@@ -39,6 +39,9 @@ public class Main {
      public static Shoe findShoeById(long id) {
         Session session = sessionFactory.openSession();
         Shoe shoe = session.get(Shoe.class,id);  
+        for(Insole i : shoe.getInsole()){
+        	System.out.println("**" + i);
+        }
         session.close();
         return shoe;
 }
@@ -57,10 +60,6 @@ public class Main {
 		
 		update(shoe);
 		shoe = findShoeById(id);
-		
-		for (Insole e : shoe.getInsole()){
-			System.out.println(e);
-		}
 	}
 
 }
