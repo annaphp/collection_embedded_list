@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ public class Shoe {
     @Column(name="shoe_size")
 	private int size;
 		
-	@ElementCollection
+	@ElementCollection(fetch=FetchType.EAGER)
 	private List<Insole> insole = new ArrayList<>() ;
 	
 	public Shoe() {}

@@ -18,14 +18,14 @@ public class Main {
 		return new MetadataSources(registry).buildMetadata().buildSessionFactory();
 	}
 	
-	public static long save(Shoe shoe){
+	 public static long save(Shoe shoe){
 		Session s = sessionFactory.openSession();
 		s.beginTransaction();
 		long id = (Long) s.save(shoe);
 		s.getTransaction().commit();
 		s.close();	
 		return id;
-	}
+	 }
 	
 	
 	  public static void update(Shoe shoe) {
@@ -34,17 +34,14 @@ public class Main {
 	        session.update(shoe);
 	        session.getTransaction().commit();
 	        session.close();
-	}
+	 }
 	
      public static Shoe findShoeById(long id) {
         Session session = sessionFactory.openSession();
         Shoe shoe = session.get(Shoe.class,id);  
-        for(Insole i : shoe.getInsole()){
-        	System.out.println("**" + i);
-        }
         session.close();
         return shoe;
-}
+    }
 	
 	public static void main(String[] args) {
 	
@@ -60,6 +57,9 @@ public class Main {
 		
 		update(shoe);
 		shoe = findShoeById(id);
+		for(Insole i : shoe.getInsole()){
+	       System.out.println("**" + i);
+	    }
 	}
 
 }
